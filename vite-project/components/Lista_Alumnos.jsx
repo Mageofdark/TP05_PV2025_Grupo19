@@ -1,6 +1,6 @@
 import { Listado_Alumnos as lista } from "./Listado_alumnos";
 import { useEffect, useState } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Container, ListGroup, Row } from "react-bootstrap";
 
 export function Lista_Alumnos(){
     // useState que guarda los alumnos
@@ -10,14 +10,15 @@ export function Lista_Alumnos(){
       setLista(lista)
     }, [])
 return (
-    <>
-        {lista.map((lista) => (
-            <ListGroup horizontal>
-            <ListGroup.Item>{lista.nombre}  {lista.apellido}</ListGroup.Item>
-            <ListGroup.Item>DNI: {lista.dni}</ListGroup.Item>
-            <ListGroup.Item>Curso: {lista.curso}</ListGroup.Item>
+    <Container>
+        <h2>Lista de Alumnos</h2>
+        {lista.map((alumno) => (
+            <ListGroup key={alumno.id} horizontal>
+            <ListGroup.Item>{alumno.nombre}  {alumno.apellido}</ListGroup.Item>
+            <ListGroup.Item>DNI: {alumno.dni}</ListGroup.Item>
+            <ListGroup.Item>Curso: {alumno.curso}</ListGroup.Item>
             </ListGroup>
         ))}
-    </>
+    </Container>
 )
 }
