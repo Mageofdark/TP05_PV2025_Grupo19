@@ -17,8 +17,8 @@ export const Listado_Alumnos = [
   },
   {
     id: 3,
-    nombre: "Yamila",
-    apellido: "Quipildor",
+    nombre: "Maria",
+    apellido: "Martinez",
     dni: 47029034,
     curso: "Primero B",
     visible: true,
