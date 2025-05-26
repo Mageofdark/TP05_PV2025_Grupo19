@@ -7,7 +7,7 @@ export const Listado_Alumnos = [
     curso: "Primero B",
     email: "bAgueroa@gmail.com",
     telefono: 123456789,
-    domiciolio: "Calle Falsa 123",
+    domicilio: "Calle Falsa 123",
     visible: true,
   },
   {
@@ -18,7 +18,7 @@ export const Listado_Alumnos = [
     curso: "Tercero A",
     email: "LauFer@gmail.com",
     telefono: 987654321,
-    domiciolio: "Calle Verdadera 456",
+    domicilio: "Calle Verdadera 456",
     visible: true,
   },
   {
@@ -29,7 +29,7 @@ export const Listado_Alumnos = [
     curso: "Primero B",
     email: "MarMar@gmail.com",
     telefono: 456789123,
-    domiciolio: "Calle Real 789",
+    domicilio: "Calle Real 789",
     visible: true,
   },
 
