@@ -2,8 +2,8 @@ function Home(){
 
     return(
         <>
-        <h1>hola, bienvenido a nuestra pagina</h1>
-        <h2>ඞ</h2>
+        <h1>hola, bienvenido</h1>
+        <h3>En esta pagina podras crear tu propia lista de alumnos.</h3>
         </>
     )
 }
