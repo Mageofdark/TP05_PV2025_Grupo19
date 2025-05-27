@@ -1,7 +1,7 @@
 export const Listado_Alumnos = [
 {
     id: 1,
-    nombre: "bAutista",
+    nombre: "Bautista",
     apellido: "Figueroa",
     dni: 49000000,
     curso: "Primero B",
