@@ -1,10 +1,15 @@
+import { Container, Card, } from "react-bootstrap";
 function Home(){
-
+    
     return(
-        <>
-        <h1>Hola, bienvenido</h1>
-        <h3>En esta pagina podras crear tu propia lista de alumnos.</h3>
-        </>
+        <Container className="mt-5 p-5 rounded" bg="secondary" variant='dark'>
+            <Card className="border-white shadow">
+                <Card.Body className="text-center py-5">
+                    <h1>Hola, bienvenido</h1>
+                    <h3>En esta pagina podras crear tu propia lista de alumnos.</h3>
+                </Card.Body>
+            </Card>
+        </Container>
     )
 }
 

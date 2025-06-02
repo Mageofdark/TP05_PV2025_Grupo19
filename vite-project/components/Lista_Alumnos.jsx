@@ -1,6 +1,6 @@
 import { useAlumnos } from './AlumnosCont.jsx';
 import { useState } from 'react';
-import { Container, ListGroup, Button, Form } from 'react-bootstrap';
+import { Container, ListGroup, Button, Form, Card, ListGroupItem } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 export function Editar() {
@@ -40,69 +40,95 @@ export function Editar() {
 
   return (
     <>
-      <Link to='/Lista-Alumnos'>Volver</Link>
+    <Card className='bg-light p-4 mt-4'>
+      <div className="d-flex gap-2 mt-3">
+          <Button variant="outline-secondary" onClick={() => window.history.back()}>
+            Volver
+          </Button>
+        </div>
       <Form>
         <Form.Label> ID: </Form.Label>
-        <Form.Control type='number' readOnly defaultValue={id} />
-
-        <Form.Label> Nombre </Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Nombre'
-          defaultValue={alumno.nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-
-        <Form.Label> Apellido </Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Apellido'
-          defaultValue={alumno.apellido}
-          onChange={(e) => setApellido(e.target.value)}
-        />
-
-        <Form.Label> Dni </Form.Label>
-        <Form.Control
-          type='number'
-          placeholder='Dni'
-          defaultValue={alumno.dni}
-          onChange={(e) => setDni(e.target.value)}
-        />
-
-        <Form.Label> Curso </Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Curso'
-          defaultValue={alumno.curso}
-          onChange={(e) => setCurso(e.target.value)}
-        />
-
-        <Form.Label> Email </Form.Label>
-        <Form.Control
-          type='email'
-          placeholder='Email'
-          defaultValue={alumno.email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <Form.Label> Domicilio </Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Domicilio'
-          defaultValue={alumno.domicilio}
-          onChange={(e) => setDomicilio(e.target.value)}
-        />
-
-        <Form.Label> Telefono </Form.Label>
-        <Form.Control
-          type='number'
-          placeholder='Telefono'
-          defaultValue={alumno.telefono}
-          onChange={(e) => setTelefono(e.target.value)}
-        />
-
-        <Button onClick={handleEditar}>Guardar Cambios</Button>
-      </Form>
+        <Form.Control type='number' readOnly defaultValue={id} className='bg-white'/>
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Nombre </Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Nombre'
+            defaultValue={alumno.nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Apellido </Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Apellido'
+            defaultValue={alumno.apellido}
+            onChange={(e) => setApellido(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Dni </Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Dni'
+            defaultValue={alumno.dni}
+            onChange={(e) => setDni(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Curso </Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Curso'
+            defaultValue={alumno.curso}
+            onChange={(e) => setCurso(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Email </Form.Label>
+          <Form.Control
+            type='email'
+            placeholder='Email'
+            defaultValue={alumno.email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Domicilio </Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Domicilio'
+            defaultValue={alumno.domicilio}
+            onChange={(e) => setDomicilio(e.target.value)}
+          />
+        </Form.Group>
+        
+        <Form.Group className='mb-3 bg-white p-3 rounded'>
+          <Form.Label> Telefono </Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Telefono'
+            defaultValue={alumno.telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+          />
+        </Form.Group>
+        <div className="d-flex gap-2 mt-3">
+          <Button variant="outline-secondary" onClick={() => window.history.back()}>
+            Cancelar
+          </Button>
+          <Button variant="secondary" onClick={handleEditar}>
+            Guardar Cambios
+          </Button>
+        </div>
+      </Form>  
+    </Card>
+      
     </>
   );
 }
@@ -114,41 +140,59 @@ export const Detalles = () => {
   if (!alumno) return <p>Alumno no encontrado</p>;
 
   return (
-    <div>
-      <Link to='/Lista-Alumnos'>Volver</Link>
-      <h2>Detalles del Alumno</h2>
-      <p>Nombre: {alumno.nombre}</p>
-      <p>Apellido: {alumno.apellido}</p>
-      <p>DNI: {alumno.dni}</p>
-      <p>Curso: {alumno.curso}</p>
-      <p>Email: {alumno.email}</p>
-      <p>Teléfono: {alumno.telefono}</p>
-      <p>Domicilio: {alumno.domicilio}</p>
-    </div>
+    <Card className='bg-light p-4 mt-4'>
+        <div className="d-flex gap-2 mt-3">
+          <Button variant="outline-secondary" onClick={() => window.history.back()}>
+            Volver
+          </Button>
+        </div>
+        <h2>Detalles del Alumno</h2>
+        <ListGroup>
+          <ListGroup.Item>Nombre: {alumno.nombre}</ListGroup.Item>
+          <ListGroup.Item>Apellido: {alumno.apellido}</ListGroup.Item>
+          <ListGroup.Item>DNI: {alumno.dni}</ListGroup.Item>
+          <ListGroup.Item>Curso: {alumno.curso}</ListGroup.Item>
+          <ListGroup.Item>Email: {alumno.email}</ListGroup.Item>
+          <ListGroup.Item>Teléfono: {alumno.telefono}</ListGroup.Item>
+          <ListGroup.Item>Domicilio: {alumno.domicilio}</ListGroup.Item>
+        </ListGroup>
+    </Card>
   );
 };
 
 export function Lista_Alumnos() {
-  const { alumnos } = useAlumnos();
-
+  const { alumnos, setAlumnos } = useAlumnos();
+  const eliminarAlumno = (id) => {
+    if (window.confirm('¿Estás seguro de eliminar este alumno?')) {
+      setAlumnos(alumnos.filter(alumno => alumno.id !== id));
+    }
+  };
   return (
-    <Container>
+    <Container className='p-4 rounded'>
       <h2>Lista de Alumnos</h2>
       {alumnos.map((alumno) => (
-        <ListGroup key={alumno.id} horizontal>
-          <ListGroup.Item>
+        <ListGroup key={alumno.id} horizontal className='mb-2 '>
+          <ListGroup.Item className='border-1'>
             <Link to={`/Lista-Alumnos/${alumno.id}`}>
               {alumno.nombre} {alumno.apellido}
             </Link>
           </ListGroup.Item>
-          <ListGroup.Item>DNI: {alumno.dni}</ListGroup.Item>
-          <ListGroup.Item>Curso: {alumno.curso}</ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item className='border-1'>DNI: {alumno.dni}</ListGroup.Item>
+          <ListGroup.Item className='border-1'>Curso: {alumno.curso}</ListGroup.Item>
+          <ListGroup.Item className='broder-1'>
             <Link to={`/Lista-Alumnos/${alumno.id}/editar`}>
-              <Button variant='outline-primary' size='sm'>
+              <Button variant='outline-secondary' size='sm' className='me.2'>
                 Modificar
               </Button>
             </Link>
+             <Button 
+              className='border-0'
+              variant="outline-danger" 
+              size='sm'
+              onClick={() => eliminarAlumno(alumno.id)}
+            >
+              Eliminar
+            </Button>
           </ListGroup.Item>
         </ListGroup>
       ))}
