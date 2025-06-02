@@ -15,27 +15,9 @@ function AgregarAlumno() {
     telefono: "",
     domicilio: "",
   });
-  const [dniError, setDniError] = useState("");
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-     if (name === 'dni') {
-      if (value === '' || /^\d+$/.test(value)) {
-        setDniError("");
-        setAlumno({...alumno, [name]: value});
-      } else {
-        setDniError("El DNI debe contener solo números");
-      }
-    } else {
-      setAlumno({...alumno, [name]: value});
-    }
-  };
-
+ 
   const handleSubmit = (e) => {
-    e.preventDefault();
-     if (!/^\d+$/.test(alumno.dni)) {
-      setDniError("El DNI es requerido y debe contener solo números");
-      return;
-    }
+
     agregarAlumno(alumno);
     alert("Alumno agregado exitosamente");
     navigate("/Lista-Alumnos");
@@ -63,7 +45,6 @@ function AgregarAlumno() {
                                 onChange={handleChange}
                                 required
                                 className="border-dark"
-                                isInvalid={!!dniError}
                               />
                             </Form.Group>
                         </Col>
