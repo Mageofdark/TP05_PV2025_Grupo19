@@ -4,9 +4,10 @@ import { Outlet, Link } from 'react-router-dom';
 function Layout() {
   return (
     <>
-      <Navbar expand="lg" className='bg-body-tertiary'>
+    <div className='bg-light min-vh-100'>
+      <Navbar expand="lg" bg="secondary" variant='dark'>
         <Container>
-          <Navbar.Brand as={Link} to="/">Proyecto</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className='fw-bold'>Proyecto</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className='me-auto'>
@@ -22,6 +23,7 @@ function Layout() {
       <section>
         <Outlet />
       </section>
+    </div>
     </>
   );
 }
