@@ -1,9 +1,11 @@
 import { useAlumnos } from './AlumnosCont.jsx';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Container, ListGroup, Button, Form, Card, ListGroupItem } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 export function Editar() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { alumnos, setAlumnos } = useAlumnos();
 
@@ -36,6 +38,7 @@ export function Editar() {
     setAlumnos(nuevaLista);
 
     alert('Los cambios se guardaron correctamente');
+    navigate("/Lista-Alumnos");
   };
 
   return (
