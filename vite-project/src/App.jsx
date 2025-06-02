@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../components/Home';
 import { Lista_Alumnos, Detalles, Editar } from '../components/Lista_Alumnos';
 import AgregarAlumno from '../components/AgregarAlumno';
+import Nosotros from '../components/Nosotros'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path='Lista-Alumnos/:id' element={<Detalles />} />
           <Route path='Lista-Alumnos/:id/editar' element={<Editar />} />
           <Route path='Nuevo-Alumno' element={<AgregarAlumno />} />
-          <Route path='Nosotros' element={<h1>Nosotros</h1>} />
+          <Route path='Nosotros' element={<Nosotros />} />
         </Route>
       </Routes>
     </div>
