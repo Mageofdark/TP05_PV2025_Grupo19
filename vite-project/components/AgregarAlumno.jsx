@@ -15,9 +15,11 @@ function AgregarAlumno() {
     telefono: "",
     domicilio: "",
   });
- 
+  const handleChange = (e) => {
+    setAlumno({ ...alumno, [e.target.name]: e.target.value });
+  };
   const handleSubmit = (e) => {
-
+    e.preventDefault();
     agregarAlumno(alumno);
     alert("Alumno agregado exitosamente");
     navigate("/Lista-Alumnos");
