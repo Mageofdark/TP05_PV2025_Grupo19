@@ -14,6 +14,7 @@ function AgregarAlumno() {
     email: "",
     telefono: "",
     domicilio: "",
+    visible: true,
   });
   const handleChange = (e) => {
     setAlumno({ ...alumno, [e.target.name]: e.target.value });
@@ -34,7 +35,7 @@ function AgregarAlumno() {
             <Card.Body className="bg-white">
                 <Form onSubmit={handleSubmit}>
                   <Row>
-                      {Object.keys(alumno).map((campo) => (
+                      {Object.keys(alumno).filter((campo) => campo !== "visible").map((campo) => (
                         <Col md={6} key={campo}>
                           <Form.Group className="mb-3" controlId={campo} key={campo}>
                             <Form.Label className="text-dark">

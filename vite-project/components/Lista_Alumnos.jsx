@@ -30,6 +30,7 @@ export function Editar() {
       email,
       domicilio,
       telefono,
+      visible: true,
     };
 
     const nuevaLista = alumnos.map((a) =>
@@ -165,15 +166,21 @@ export const Detalles = () => {
 
 export function Lista_Alumnos() {
   const { alumnos, setAlumnos } = useAlumnos();
-  const eliminarAlumno = (id) => {
-    if (window.confirm('¿Estás seguro de eliminar este alumno?')) {
-      setAlumnos(alumnos.filter(alumno => alumno.id !== id));
-    }
-  };
+
+  const handleEliminar = (id) => {
+    const confirmation = window.confirm("¿Estás seguro de que deseas eliminar este alumno?");
+    if(!confirmation) return;
+
+    const newAlumnos = alumnos.map((e) => 
+      e.id === id ? {...e, visible: false} : e
+    )
+    setAlumnos(newAlumnos);
+  }
+
   return (
     <Container className='p-4 rounded'>
       <h2>Lista de Alumnos</h2>
-      {alumnos.map((alumno) => (
+      {alumnos.map((alumno) => alumno.visible && (
         <ListGroup key={alumno.id} horizontal className='mb-2 '>
           <ListGroup.Item className='border-1'>
             <Link to={`/Lista-Alumnos/${alumno.id}`}>
@@ -182,18 +189,13 @@ export function Lista_Alumnos() {
           </ListGroup.Item>
           <ListGroup.Item className='border-1'>DNI: {alumno.dni}</ListGroup.Item>
           <ListGroup.Item className='border-1'>Curso: {alumno.curso}</ListGroup.Item>
-          <ListGroup.Item className='broder-1'>
+          <ListGroup.Item className='border-1'>
             <Link to={`/Lista-Alumnos/${alumno.id}/editar`}>
-              <Button variant='outline-secondary' size='sm' className='me.2'>
+              <Button variant='outline-secondary' size='sm' className='me-2'>
                 Modificar
               </Button>
             </Link>
-             <Button 
-              className='border-0'
-              variant="outline-danger" 
-              size='sm'
-              onClick={() => eliminarAlumno(alumno.id)}
-            >
+            <Button onClick={() => handleEliminar(alumno.id)} variant='danger' size='sm' className='me-2'>
               Eliminar
             </Button>
           </ListGroup.Item>
