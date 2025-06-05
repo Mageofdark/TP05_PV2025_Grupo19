@@ -13,13 +13,30 @@ export function Editar() {
   if (!alumno) return <p>Alumno no encontrado</p>;
 
   const [ alumnoEdit, setAlumnoEdit ] = useState({...alumno});
+  const [errores, setErrores] = useState({});
 
   const handleChange = (e) => {
     setAlumnoEdit({ ...alumnoEdit, [e.target.name]: e.target.value });
     };
 
+    const validar = () => {
+    const newErrors = {};
+    if (!alumnoEdit.nombre) newErrors.nombre = "El nombre es obligatorio";
+    if (!alumnoEdit.apellido) newErrors.apellido = "El apellido es obligatorio";
+    if (!alumnoEdit.dni || isNaN(alumnoEdit.dni)) newErrors.dni = "DNI válido requerido";
+    if (!alumnoEdit.curso) newErrors.curso = "El curso es obligatorio";
+    if (!alumnoEdit.email || !/\S+@\S+\.\S+/.test(alumnoEdit.email)) newErrors.email = "Email válido requerido";
+    if (!alumnoEdit.telefono || isNaN(alumnoEdit.telefono)) newErrors.telefono = "Teléfono válido requerido";
+    if (!alumnoEdit.domicilio) newErrors.domicilio = "El domicilio es obligatorio";
+    return newErrors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const erroresVal = validar();
+    setErrores(erroresVal);
+    if (Object.keys(erroresVal).length > 0) return;
+
     const nuevaLista = alumnos.map((a) =>
       a.id === alumnoEdit.id ? alumnoEdit : a
     );
@@ -39,7 +56,7 @@ export function Editar() {
               Editar Alumno
             </Card.Header>
             <Card.Body className="bg-white">
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} noValidate>
                   <Form.Group className='mb-3'>
                     <Form.Label>ID</Form.Label>
                     <Form.Control
@@ -57,13 +74,23 @@ export function Editar() {
                               {campo.charAt(0).toUpperCase() + campo.slice(1)}
                             </Form.Label>
                             <Form.Control
-                                type="text"
-                                name={campo}
-                                value={alumnoEdit[campo]}
-                                onChange={handleChange}
-                                required
-                                className="border-dark"
+                                type={
+                                campo === "email"
+                                  ? "email"
+                                  : campo === "dni" || campo === "telefono"
+                                  ? "number"
+                                  : "text"
+                              }
+                              name={campo}
+                              value={alumnoEdit[campo]}
+                              onChange={handleChange}
+                              isInvalid={!!errores[campo]}
+                              className="border-dark"
+                              required
                               />
+                            <Form.Control.Feedback type="invalid">
+                              {errores[campo]}
+                            </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                   ))}
